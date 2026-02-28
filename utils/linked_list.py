@@ -9,7 +9,7 @@ class ListNode:
 
 def createLinkedList(arr: List) -> Optional[ListNode]:
     if not arr:
-        return None
+        return None, None
     
     head = ListNode(arr[0])
     current = head
@@ -39,3 +39,51 @@ def createIntersectingLists(
         currentB.next = intersection
     
     return headA, headB
+
+
+def findNodeByPos(head: Optional[ListNode], pos: int):
+    if not head:
+        return None
+    
+    if pos == -1:
+        return None
+
+    begin = 0
+
+    current = head
+    while current:
+        if begin == pos:
+            return current
+        
+        current = current.next
+        begin += 1
+    
+    return None
+
+
+def reverseLinkedList(head: Optional[ListNode]) -> Optional[ListNode]:
+    prev, curr = None, head
+
+    while curr:
+        next_node = curr.next
+        
+        curr.next = prev
+        prev = curr
+
+        curr = next_node
+
+    return prev
+
+
+def transformToArray(head: Optional[ListNode]) -> List:
+    if not head:
+        return []
+    
+    arr = []
+    curr = head
+
+    while curr:
+        arr.append(curr.val)
+        curr = curr.next
+
+    return arr

@@ -1,24 +1,10 @@
 from typing import Optional
 
-from utils.linked_list import ListNode, createLinkedList
-
-
-def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
-    prev, curr = None, head
-
-    while curr:
-        next_node = curr.next
-        
-        curr.next = prev
-        prev = curr
-
-        curr = next_node
-
-    return prev
+from utils.linked_list import ListNode, createLinkedList, reverseLinkedList
 
 
 head, _ = createLinkedList([1,2,3,4,5])
-print(reverseList(head))
+print(reverseLinkedList(head))
 
 
 """
