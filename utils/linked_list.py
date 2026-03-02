@@ -2,9 +2,10 @@ from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x, next: Optional["ListNode"]=None, random: Optional["ListNode"]=None):
         self.val = x
-        self.next = None
+        self.next = next
+        self.random = random
 
 
 def createLinkedList(arr: List) -> Optional[ListNode]:

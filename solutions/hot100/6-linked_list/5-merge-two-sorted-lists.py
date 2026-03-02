@@ -4,36 +4,22 @@ from utils.linked_list import ListNode, createLinkedList, transformToArray
 
 
 def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-    if list1 and list2:
-        currA, currB = list1, list2
+    dummy = ListNode(-1)
+    curr = dummy
 
+    while list1 and list2:
         if list1.val <= list2.val:
-            currA = list1
-            currB = list2
+            curr.next = list1
+            list1 = list1.next
         else:
-            currA = list2
-            currB = list1
-
-        node = currA
-        curr = node
-
-        while currA:
-            currNext = currA.next
-
-            if currNext.val <= currB.val:
-                curr.next = currNext
-                currA = currNext
-            else:
-                curr.next = currB
-                currB = currB.next
-            
-            curr = curr.next
-
-        curr.next = currB
+            curr.next = list2
+            list2 = list2.next
         
-        return node
-    else:
-        return list1 or list2
+        curr = curr.next
+
+    curr.next = list1 or list2
+
+    return dummy.next
 
 
 l1 = [1,2,4]
