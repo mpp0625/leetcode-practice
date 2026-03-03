@@ -65,24 +65,22 @@ def sortList2(head: Optional[ListNode]) -> Optional[ListNode]:
 
 
 def sortList3(head: Optional[ListNode]) -> Optional[ListNode]:
-    def mergeFunc(head1: ListNode, head2: ListNode):
-        dummy = ListNode(0)
+    def mergeFunc(l1: ListNode, l2: ListNode):
+        dummy = ListNode(-1)
         curr = dummy
 
-        while head1 and head2:
-            if head1.val <= head2.val:
-                curr.next = head1
-                head1 = head1.next
+        while l1 and l2:
+            if l1.val <= l2.val:
+                curr.next = l1
+                l1 = l1.next
             else:
-                curr.next = head2
-                head2 = head2.next
-
+                curr.next = l2
+                l2 = l2.next
+            
             curr = curr.next
 
+        curr.next = l1 or l2
         return dummy.next
-    
-    if not head:
-        return head
 
     length = 0
     curr = head
@@ -91,32 +89,36 @@ def sortList3(head: Optional[ListNode]) -> Optional[ListNode]:
         length += 1
         curr = curr.next
 
-    dummy = ListNode(0, head)
+    dummy = ListNode(-1, head)
     subLength = 1
 
     while subLength < length:
-        prev, curr = head, head.next
+        prev, curr = dummy, dummy.next
+
         while curr:
             head1 = curr
-            for i in range(1, subLength):
-                if curr and curr.next:
-                    curr.next
+
+            for _ in range(1, subLength):
+                if curr.next:
+                    curr = curr.next
                 else:
                     break
 
             head2 = curr.next
             curr.next = None
+            curr = head2
 
-            for i in range(1, subLength):
+            for _ in range(1, subLength):
                 if curr and curr.next:
-                    curr.next
+                    curr = curr.next
                 else:
                     break
-
+            
             succ = None
             if curr:
                 succ = curr.next
                 curr.next = None
+                curr = succ
 
             merged = mergeFunc(head1, head2)
             prev.next = merged
@@ -124,18 +126,13 @@ def sortList3(head: Optional[ListNode]) -> Optional[ListNode]:
             while prev.next:
                 prev = prev.next
 
-            curr = succ
-        
         subLength *= 2
 
     return dummy.next
-    
-            
-    
 
 
-head, _ = createLinkedList([-1,5,3,4,0,-1])
-sortList2(head)
+head, _ = createLinkedList([-1,5,3,4,0])
+sortList3(head)
 # print(transformToArray(sortList(head)))
 
 

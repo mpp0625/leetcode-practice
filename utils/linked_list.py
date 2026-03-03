@@ -2,9 +2,14 @@ from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, x, next: Optional["ListNode"]=None, random: Optional["ListNode"]=None):
-        self.val = x
+    def __init__(
+        self, value, key: int=-1, next: Optional["ListNode"]=None, random: Optional["ListNode"]=None
+    ):
+        self.val = value
+        self.key = key
+
         self.next = next
+        self.prev = None
         self.random = random
 
 
