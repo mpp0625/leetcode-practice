@@ -15,15 +15,15 @@ def isSymmetric(root: Optional[TreeNode]) -> bool:
         if left is None and right is None:
             continue
 
-        val1 = None if left is None else left.val
-        val2 = None if right is None else right.val
+        if bool(left) != bool(right):
+            return False
 
-        if val1 != val2:
+        if left.val != right.val:
             return False
         
         stack.append((left.left, right.right))
         stack.append((left.right, right.left))
-    
+
     return True
 
 

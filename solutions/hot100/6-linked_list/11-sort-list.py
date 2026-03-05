@@ -113,7 +113,7 @@ def sortList3(head: Optional[ListNode]) -> Optional[ListNode]:
                     curr = curr.next
                 else:
                     break
-            
+
             succ = None
             if curr:
                 succ = curr.next
@@ -137,6 +137,12 @@ sortList3(head)
 
 
 """
+mergeTwoLists1 哈希存储 + 排序 -> 链表：
+    以值为 key， 将相同值的节点存储到对应的数组中；对 hash 按照 key 进行排序；重新构建链表；
+    时间复杂度：O(nlogn)；空间复杂度：O(n)；
+
+    其中 sort 的时间复杂度是 O(klogk) （在本例中 k <= n, k 是 hash 列表的长度）；
+
 mergeTwoLists2 自顶向下归并排序：
     先进行拆分：使用快慢指针将 head 拆分成前半部和后半部两部分，然后持续使用递归拆分直到单个节点
     合并并排序：逐层拆分后得到的数据一层层向前回溯合并
