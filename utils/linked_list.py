@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 
 class ListNode:
@@ -13,7 +13,7 @@ class ListNode:
         self.random = random
 
 
-def createLinkedList(arr: List) -> Optional[ListNode]:
+def createLinkedList(arr: List) -> Tuple[Optional[ListNode], Optional[ListNode]]:
     if not arr:
         return None, None
     
